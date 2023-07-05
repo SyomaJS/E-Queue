@@ -107,13 +107,15 @@ const verifyOTP = async (req, res) => {
             ]);
           }
 
+
+
           const payload = {
             id: client_id,
           };
 
           const userAgent = req.headers["user-agent"];
           const resultOC = detector.detect(userAgent);
-          console.log(resultOC);
+          
 
           tokens = myJwt.generateTokens(payload);
           query = `INSERT INTO token (table_name, user_id, user_oc, user_device,  hashed_refresh_token ) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
@@ -124,6 +126,7 @@ const verifyOTP = async (req, res) => {
             resultOC.device,
             bcrypt.hashSync(tokens.refreshToken, 7),
           ]);
+
 
           const response = {
             Status: "Success",
@@ -162,8 +165,7 @@ const deleteOTP = async (req, res) => {
     const { id } = req.params.id;
     const query = `delete from otp where id = $1 returning *`;
     const result = await pool.query(query, [id]);
-    console.log(result);
-    res.send("Ok");
+    res.status(201).send(result);
   } catch (error) {
     console.log(error);
     return res.status(400).send("Internal Server Error");

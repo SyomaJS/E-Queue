@@ -31,17 +31,7 @@ const addClient = async (req, res) => {
 
 const getClient = async (req, res) => {
   try {
-    const detector = new DeviceDetector({
-      clientIndexes: true,
-      deviceIndexes: true,
-      deviceAliasCode: false,
-    });
-
-    const userAgent = req.headers["user-agent"];
-    const resultOC = detector.detect(userAgent);
-
-    // console.log('Is desctop ',DeviceHelper.isDesktop(resultOC));
-
+ 
     const newClient = await pool.query(`SELECT * FROM client`);
     res.status(200).json(newClient.rows);
   } catch (error) {
