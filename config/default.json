@@ -1,0 +1,18 @@
+{
+  "port": 3000,
+  "db_host": "localhost",
+  "db_username": "postgres",
+  "db_password": "212wly13kz",
+  "db_port": 5432,
+  "db_name": "e-queue",
+
+  "crypt_password": "Very_Secret_Password",
+  "iv": "28408e46",
+
+  "refresh_key": "Very_Secret_Password",
+  "access_key": "Very_Secret_Password",
+  "access_time": "20s",
+  "refresh_time": "1m",
+
+  "refresh_ms": 180000
+}
